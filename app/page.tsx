@@ -1,65 +1,60 @@
-import Image from "next/image";
+import Link from 'next/link'
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-[#3A3A3A] via-zinc-900 to-black">
+      <div className="max-w-3xl px-8 text-center">
+        {/* Logo/Brand */}
+        <div className="mb-8">
+          <h1 className="text-6xl font-bold tracking-tight text-[#FFD700] sm:text-8xl">
+            LMG
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-2xl font-light tracking-widest text-white sm:text-3xl">
+            CREATOR HUB
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        {/* Tagline */}
+        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-5xl">
+          Your Business Command Center
+        </h2>
+        <p className="mt-6 text-lg leading-8 text-zinc-300">
+          Manage brand deals, contracts, and payments all in one place. 
+          Built for creators who want to scale their business with confidence.
+        </p>
+
+        {/* CTAs */}
+        <div className="mt-10 flex items-center justify-center gap-x-6">
+          <Link
+            href="/dashboard"
+            className="rounded-lg bg-[#FFD700] px-8 py-4 text-base font-semibold text-[#3A3A3A] shadow-lg hover:bg-[#FFE55C] transition-all transform hover:scale-105"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Get Started
+          </Link>
+          <Link
+            href="/login"
+            className="text-base font-semibold leading-6 text-[#FF4D94] hover:text-[#FF7AB3] transition-colors"
           >
-            Documentation
-          </a>
+            Sign In <span aria-hidden="true">→</span>
+          </Link>
         </div>
-      </main>
+
+        {/* Feature Highlights */}
+        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-3">
+          <div className="rounded-lg border border-[#FFD700]/20 bg-[#3A3A3A]/50 p-6 backdrop-blur">
+            <div className="text-[#FFD700] text-2xl font-bold mb-2">Deal Pipeline</div>
+            <p className="text-sm text-zinc-300">Track every opportunity from lead to payment</p>
+          </div>
+          <div className="rounded-lg border border-[#FF4D94]/20 bg-[#3A3A3A]/50 p-6 backdrop-blur">
+            <div className="text-[#FF4D94] text-2xl font-bold mb-2">Smart Contracts</div>
+            <p className="text-sm text-zinc-300">Generate professional contracts in seconds</p>
+          </div>
+          <div className="rounded-lg border border-[#3AAFF4]/20 bg-[#3A3A3A]/50 p-6 backdrop-blur">
+            <div className="text-[#3AAFF4] text-2xl font-bold mb-2">Payment Tracking</div>
+            <p className="text-sm text-zinc-300">Never miss a payment deadline again</p>
+          </div>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
