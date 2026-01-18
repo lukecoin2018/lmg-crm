@@ -2,13 +2,15 @@
 
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { supabase, type Deal, type NegotiationNote } from '@/lib/supabase/client'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { AppShell } from '@/components/app-shell'
+
 
 export default function Dashboard() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [deals, setDeals] = useState<Deal[]>([])
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
   const [selectedDeal, setSelectedDeal] = useState<Deal | null>(null)
@@ -26,6 +28,31 @@ export default function Dashboard() {
   const [deliverables, setDeliverables] = useState('')
   const [deadline, setDeadline] = useState('')
   const [notes, setNotes] = useState('')
+
+    
+  // Pre-fill form from URL parameters (Scout Agent integration)
+  useEffect(() => {
+    const addDeal = searchParams.get('add_deal')
+    const brand = searchParams.get('brand')
+    const dealValue = searchParams.get('value')
+    const opportunityId = searchParams.get('opportunity_id')
+    
+    if (addDeal === 'true' && brand) {
+      // Pre-fill form fields
+      setBrandName(decodeURIComponent(brand))
+      setValue(dealValue || '')
+      
+      // Open modal automatically
+      setIsAddModalOpen(true)
+      
+      // Log for debugging
+      console.log('Creating deal from Scout Agent opportunity:', {
+        brand: decodeURIComponent(brand),
+        value: dealValue,
+        opportunityId
+      })
+    }
+  }, [searchParams])
 
   // Check authentication and load deals
   useEffect(() => {
@@ -332,6 +359,7 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-zinc-900">
+      
       {/* Navigation */}
       <nav className="border-b border-zinc-800 bg-[#3A3A3A]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -344,6 +372,9 @@ export default function Dashboard() {
               <div className="flex gap-4">
                 <Link href="/dashboard" className="text-white font-semibold">
                   Dashboard
+                </Link>
+                <Link href="/opportunities" className="text-zinc-400 hover:text-white transition-colors">
+                Opportunities
                 </Link>
                 <Link href="/contracts" className="text-zinc-400 hover:text-white transition-colors">
                   Contracts

@@ -30,6 +30,12 @@ const apps = [
     icon: TrendingUp,
     active: true 
   },
+  {
+    name: 'Opportunities',
+    href: '/opportunities',
+    icon: TrendingUp,
+    active: true
+  },
   { 
     name: 'Content Calendar', 
     href: '/apps/content-calendar', 
