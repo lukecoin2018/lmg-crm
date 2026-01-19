@@ -6,9 +6,9 @@ import { useSearchParams } from 'next/navigation'
 import { supabase, type Deal, type NegotiationNote } from '@/lib/supabase/client'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { Suspense } from 'react'
 
-
-export default function Dashboard() {
+function DashboardContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [deals, setDeals] = useState<Deal[]>([])
@@ -1095,5 +1095,16 @@ function DealDetailsModal({
         </form>
       </div>
     </div>
+  )
+}
+export default function Dashboard() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-zinc-900 flex items-center justify-center">
+        <div className="text-zinc-400">Loading dashboard...</div>
+      </div>
+    }>
+      <DashboardContent />
+    </Suspense>
   )
 }
